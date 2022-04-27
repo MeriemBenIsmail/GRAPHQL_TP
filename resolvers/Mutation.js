@@ -10,7 +10,7 @@ export const Mutation = {
       status: data?.status ?? "WAITING",
     };
     db.todos.push(newTodo);
-    pubSub.publish("newTodo", { newTodo });
+    pubsub.publish("newTodo", { newTodo });
     return newTodo;
   },
 
@@ -27,7 +27,7 @@ export const Mutation = {
       } else return todo;
     });
     db.todos = updatedTodos;
-    pubSub.publish("updatedTodo", { updatedTodo });
+    pubsub.publish("updatedTodo", { updatedTodo });
     return updatedTodo;
   },
 
@@ -35,7 +35,7 @@ export const Mutation = {
     const deletedTodo = db.todos.find((todo) => todo.id === todoId);
 
     db.todos = db.todos.filter((todo) => todo.id !== todoId);
-    pubSub.publish("deletedTodo", { deletedTodo });
+    pubsub.publish("deletedTodo", { deletedTodo });
     return deletedTodo;
   },
 };
