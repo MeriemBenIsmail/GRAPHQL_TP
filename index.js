@@ -5,6 +5,8 @@ import { Todo } from "./resolvers/Todo.js";
 import { User } from "./resolvers/User.js";
 import { db } from "./data/db.js";
 import { Mutation } from "./resolvers/Mutation.js";
+import { Subscription } from "./resolvers/Subscription.js";
+
 // ... or using "require()"
 // const { GraphQLServer } = require('graphql-yoga')
 const typeDefs = "schema/schema.graphql";
@@ -14,6 +16,7 @@ const resolvers = {
   Todo,
   User,
   Mutation,
+  Subscription,
 };
 const pubsub = new PubSub();
 const server = new GraphQLServer({
