@@ -70,3 +70,6 @@ input UpdateTodoInput {
     user: ID
 }
 
+type Subscription {
+    newTodo: Todo!
+}

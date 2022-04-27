@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 export const Mutation = {
-  createTodo: (_parent, { data }, { db }) => {
+  createTodo: (_parent, { data }, { db, pubsub }) => {
     if (!db.users.find((u) => u.id == data.user)) {
       throw new Error("User does not exist.");
     }
@@ -10,10 +10,11 @@ export const Mutation = {
       status: data?.status ?? "WAITING",
     };
     db.todos.push(newTodo);
+    pubSub.publish("newTodo", { newTodo });
     return newTodo;
   },
 
-  updateTodo: (_parent, { data }, { db, pubsub }) => {
+  updateTodo: (_parent, { data }, { db }) => {
     let updatedTodo = updateTodoInput;
 
     const updatedTodos = db.todos.map((todo) => {
