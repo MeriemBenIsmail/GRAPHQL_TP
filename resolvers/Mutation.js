@@ -27,6 +27,7 @@ export const Mutation = {
       } else return todo;
     });
     db.todos = updatedTodos;
+    pubSub.publish("updatedTodo", { updatedTodo });
     return updatedTodo;
   },
 
@@ -34,6 +35,7 @@ export const Mutation = {
     const deletedTodo = db.todos.find((todo) => todo.id === todoId);
 
     db.todos = db.todos.filter((todo) => todo.id !== todoId);
+    pubSub.publish("deletedTodo", { deletedTodo });
     return deletedTodo;
   },
 };

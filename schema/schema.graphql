@@ -72,4 +72,6 @@ input UpdateTodoInput {
 
 type Subscription {
     newTodo: Todo!
+    updatedTodo: Todo!
+    deletedTodo: Todo!
 }
