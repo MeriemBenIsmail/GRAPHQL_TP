@@ -28,6 +28,12 @@ type Query {
     getAllUsers: [User]
     getUser(id:ID!): User
 }
+
+type Mutation {
+    createTodo(data: CreateTodoInput!): Todo
+    updateTodo(data: UpdateTodoInput!): Todo
+    deleteTodo(todoId: ID!): Todo
+}
 enum TodoStatus {
     WAITING
     IN_PROCESS
@@ -48,5 +54,19 @@ type User {
     name: String!
     email: String!
     todos: [Todo!]
+}
+
+input CreateTodoInput {
+    name: String!
+    content: String!
+    status: TodoStatus
+    user: ID
+}
+input UpdateTodoInput {
+    id: ID!
+    name: String
+    content: String
+    status: TodoStatus
+    user: ID
 }
 
